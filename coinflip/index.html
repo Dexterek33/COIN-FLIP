@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COIN FLIP</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="game-wrapper">
+        <div class="stars"></div>
+        <div class="container">
+            <header>
+                <h1>COIN FLIP</h1>
+                <p class="tagline">Pick your color & test your luck!</p>
+            </header>
+            
+            <div class="game-area">
+                <div class="coin-wrapper">
+                    <div class="coin" id="coin">
+                        <div class="side-yellow">
+                            <span class="coin-edge"></span>
+                            <span class="coin-center">Y</span>
+                        </div>
+                        <div class="side-blue">
+                            <span class="coin-edge"></span>
+                            <span class="coin-center">B</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="controls">
+                    <div class="choice-buttons">
+                        <button id="yellow-choice" class="choice-btn yellow">
+                            <span class="shine"></span>
+                            <span class="btn-text">Yellow Team</span>
+                        </button>
+                        <button id="blue-choice" class="choice-btn blue">
+                            <span class="shine"></span>
+                            <span class="btn-text">Blue Team</span>
+                        </button>
+                    </div>
+                    <button id="flip-button" class="flip-btn">
+                        <span class="shine"></span>
+                        <span class="btn-text">FLIP!</span>
+                    </button>
+                </div>
+
+                <div id="result" class="result"></div>
+            </div>
+
+            <div class="score-board">
+                <div class="score yellow-score">
+                    <span class="label">Yellow</span>
+                    <span class="value" id="yellow-wins">0</span>
+                </div>
+                <div class="score blue-score">
+                    <span class="label">Blue</span>
+                    <span class="value" id="blue-wins">0</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 

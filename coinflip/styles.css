@@ -1,0 +1,301 @@
+:root {
+    --yellow: #ffd100;
+    --blue: #3498db;
+    --dark-blue: #2980b9;
+    --background: #1a1a2e;
+    --text: #ffffff;
+    --shadow: rgba(0, 0, 0, 0.2);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: var(--background);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.game-wrapper {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Stars background effect */
+.stars {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background: radial-gradient(circle at center, transparent 0%, var(--background) 100%),
+                repeating-linear-gradient(transparent 0%, transparent 50%, var(--background) 50%, var(--background) 100%);
+    background-size: 100% 100%, 4px 4px;
+    animation: stars 20s linear infinite;
+}
+
+.container {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 2rem;
+    width: 100%;
+    max-width: 600px;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 1;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(45deg, var(--yellow), var(--blue));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 2px 4px var(--shadow));
+}
+
+.tagline {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1rem;
+}
+
+.game-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.coin-wrapper {
+    perspective: 1000px;
+    width: 200px;
+    height: 200px;
+}
+
+.coin {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s ease;
+}
+
+.side-yellow, .side-blue {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+    font-weight: bold;
+    backface-visibility: hidden;
+    overflow: hidden;
+}
+
+.side-yellow {
+    background: linear-gradient(135deg, var(--yellow), #ffb300);
+    color: #1a1a2e;
+}
+
+.side-blue {
+    background: linear-gradient(135deg, var(--blue), var(--dark-blue));
+    color: white;
+    transform: rotateY(180deg);
+}
+
+.coin-edge {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 8px solid rgba(255, 255, 255, 0.1);
+}
+
+.coin-center {
+    position: relative;
+    z-index: 2;
+    text-shadow: 2px 2px 4px var(--shadow);
+}
+
+.controls {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+}
+
+.choice-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.choice-btn, .flip-btn {
+    position: relative;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    flex: 1;
+    max-width: 200px;
+}
+
+.choice-btn.yellow {
+    background: linear-gradient(135deg, var(--yellow), #ffb300);
+    color: #1a1a2e;
+}
+
+.choice-btn.blue {
+    background: linear-gradient(135deg, var(--blue), var(--dark-blue));
+    color: white;
+}
+
+.flip-btn {
+    background: linear-gradient(135deg, #2ecc71, #27ae60);
+    color: white;
+    font-size: 1.2rem;
+    padding: 1rem 2rem;
+    min-width: 200px;
+    margin: 0 auto;
+    display: block;
+}
+
+.shine {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: rotate(45deg);
+    pointer-events: none;
+    transition: 0.5s;
+}
+
+.choice-btn:hover .shine,
+.flip-btn:hover .shine {
+    left: 100%;
+}
+
+.choice-btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+    transform: none;
+}
+
+.result {
+    min-height: 2rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-align: center;
+    padding: 1rem;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    transition: all 0.3s ease;
+}
+
+.score-board {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.score {
+    text-align: center;
+    padding: 1rem;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    min-width: 100px;
+}
+
+.score .label {
+    display: block;
+    font-size: 0.9rem;
+    opacity: 0.7;
+    margin-bottom: 0.5rem;
+}
+
+.score .value {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.yellow-score .value {
+    color: var(--yellow);
+}
+
+.blue-score .value {
+    color: var(--blue);
+}
+
+.coin.animate {
+    animation: flip 1.5s ease-out forwards;
+}
+
+@keyframes flip {
+    0% {
+        transform: rotateY(0) rotateZ(0);
+    }
+    100% {
+        transform: rotateY(720deg) rotateZ(360deg);
+    }
+}
+
+@keyframes stars {
+    0% { background-position: 0 0; }
+    100% { background-position: 0 100%; }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 1rem;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    .coin-wrapper {
+        width: 150px;
+        height: 150px;
+    }
+
+    .choice-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .choice-btn {
+        width: 100%;
+    }
+} 
